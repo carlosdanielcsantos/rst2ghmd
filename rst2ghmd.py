@@ -38,7 +38,7 @@ def rst2ghmd(file, n_releases=1, min_header_level=1, exclude_min_header=False):
     parsed = -1
     headers = []
     new_lines = []
-    print(exclude_min_header)
+
     with open(file, 'r') as fd:
         lines = [line for line in fd]
 
@@ -76,11 +76,9 @@ def rst2ghmd(file, n_releases=1, min_header_level=1, exclude_min_header=False):
                         and not line.startswith(bullet_point_chars):
                     line = "".join([new_lines.pop().strip(),
                                     ' ', line.strip() + '\n'])
-
             new_lines.append(line)
         else:
             break
-
     return new_lines
 
 
