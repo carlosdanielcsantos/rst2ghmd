@@ -1,6 +1,4 @@
 import re
-import argparse
-import sys
 
 
 def is_header_line(line):
@@ -80,23 +78,3 @@ def rst2ghmd(file, n_releases=1, min_header_level=1, exclude_min_header=False):
         else:
             break
     return new_lines
-
-
-if __name__ == '__main__':
-    parser = argparse.\
-        ArgumentParser(description='Convert rst to github md.',
-                       formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-    parser.add_argument('file', help='rst file to be converted')
-    parser.add_argument('-n', help='convert last n releases',
-                        type=int, default=1)
-    parser.add_argument('--min-header', '-H', help='minimum header level',
-                        type=int, default=1)
-    parser.add_argument('--exclude-min-header', '-e', action='store_true',
-                        help='exclude minimum header level')
-
-    args = parser.parse_args()
-
-    for line in rst2ghmd(args.file, args.n, args.min_header,
-                         args.exclude_min_header):
-        sys.stdout.write(line)
